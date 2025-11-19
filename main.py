@@ -194,14 +194,13 @@ async def create_app():
         logger.error("❌ КРИТИЧЕСКАЯ ОШИБКА: BOT_TOKEN не установлен!")
         raise ValueError("BOT_TOKEN environment variable is required")
 
-    database_url = "postgresql+asyncpg://postgres:password@localhost:5433/postgres"
-
     # Инициализация бота
     logger.info("🤖 Инициализация бота...")
     bot = Bot(
         token=bot_token,
         default=DefaultBotProperties(parse_mode='HTML')
     )
+    database_url = os.getenv('DATABASE_URL')
 
     # Инициализация базы данных PostgreSQL
     logger.info("🗄️ Инициализация PostgreSQL...")
@@ -284,7 +283,7 @@ if __name__ == '__main__':
     print("=" * 50)
 
     bot_token = os.getenv('BOT_TOKEN')
-    database_url = "postgresql+asyncpg://postgres:password@localhost:5433/postgres"
+    database_url = os.getenv('DATABASE_URL')
 
     if not bot_token:
         print("❌ BOT_TOKEN: НЕ УСТАНОВЛЕН")
