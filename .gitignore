@@ -1,0 +1,15 @@
+*.pyc
+*.pyo
+.coverage
+.env
+.idea/
+.vscode/
+.venv
+__pycache__
+venv/
+*.csv
+*.xlsx
+test.py
+db/
+.DS_Store
+logs/
