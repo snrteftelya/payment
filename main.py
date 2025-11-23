@@ -207,8 +207,14 @@ async def create_app():
     logger.info(f"🔗 Подключение к: {database_url}")
 
     try:
-        engine = create_async_engine(database_url, echo=True)
-
+        engine = create_async_engine(
+            database_url,
+            echo=True,
+            pool_pre_ping=True,  # Проверяет соединение перед использованием
+            pool_recycle=1800,   # Пересоздает соединения каждые 30 минут
+            pool_size=10,        # Размер пула (можно настроить под нагрузку)
+            max_overflow=20      # Доп. соединения при пиковой нагрузке
+        )
         # Тестируем подключение
         async with engine.begin() as conn:
             await conn.execute(select(1))
