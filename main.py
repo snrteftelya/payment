@@ -132,7 +132,7 @@ class PaymentWebhookHandler:
 
                 purchase = TributePurchase(
                     purchase_id=str(payload.get('purchase_id')),
-                    user_id=payload.get('user_id'),
+                    user_id=payload.get('trb_user_id'),
                     telegram_user_id=payload.get('telegram_user_id'),
                     product_id=str(payload.get('product_id')),
                     product_name=payload.get('product_name'),
